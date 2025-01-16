@@ -15,7 +15,7 @@ const personalPlanPeter = {
 
         const languages = personalPlanPeter['skills']['languages'];
         let newLanguages = [];
-
+            
 
         for (let value of languages) {
             newLanguages += value.toUpperCase();
@@ -48,8 +48,7 @@ function showProgrammingLangs(personalPlanPeter) {
     let key,
         result = '';
     for (key in programmingLangs) {
-        result += `Die ${key} wird zu ${programmingLangs[key] erlernt
-    } \n`;
+        result += `${key} wird zu ${programmingLangs[key]} erlernt\n`;
 
     }
     return result;
