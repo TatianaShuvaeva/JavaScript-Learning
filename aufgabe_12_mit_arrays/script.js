@@ -1,18 +1,41 @@
-const someString = 'This is some strange string';
-
 function reverse(str) {
-    let arr = [];
-    let zeile = '';
-
-    for (i in str) {
-        arr[i] = str[i]
-    };
-
-    const reversed = arr.reverse();
-    for (k of reversed) {
-        zeile += k;
+    if (typeof (str) !== 'string') {
+        return 'Ошибка!'
     }
-    return zeile
+
+    let ergebnis = '';
+
+    for (let i = str.length - 1; i >= 0; i--) {
+        ergebnis += str[i]
+    }
+
+    return ergebnis
 };
 
-console.log(reverse(someString));
+console.log(reverse('This is some strange string'));
+console.log(reverse(['This is some strange string', 3457678]));
+console.log(reverse(''));
+
+
+const baseCurrencies = ['USD', 'EUR'];
+const additionalCurrencies = ['UAH', 'RUB', 'CNY'];
+const arr = [...baseCurrencies, ...additionalCurrencies];
+
+function availableCurr(arr, missingCurr) {
+    if (arr.length === 0) {
+        return 'Нет доступных валют'
+    }
+
+    const newArr = ['Доступные валюты:'];
+    for (let curr of arr) {
+        if (curr !== missingCurr) {
+            newArr.push(curr)
+        }
+
+    }
+    const ergebnis = newArr.join('\n');
+    return ergebnis + '\n';
+}
+
+console.log(availableCurr(arr, 'CNY'));
+console.log(availableCurr(arr));
