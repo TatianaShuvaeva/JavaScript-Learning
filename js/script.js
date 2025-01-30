@@ -118,7 +118,7 @@
 // for (let zahl = 5; zahl < 11; zahl++) {
 //     console.log(zahl);
 // }    
-    
+
 
 //     for (let zahl = 20; zahl > 9; zahl--) {
 //         if (zahl === 13) break;
@@ -159,9 +159,9 @@
 
 // }
 // console.log(arrayOfNumbers);
-        
-    
-    
+
+
+
 // let i = 2;
 // while (i <= 15) {
 //     i++;
@@ -190,7 +190,7 @@
 
 // for (let i=0; i<zahlElementen; i++) {
 //     result[i] = arr[i];
-    
+
 // }
 // console.log(result);
 
@@ -202,30 +202,45 @@
 
 
 // for (let i=0; i<zahlElementen; i++) {
-    
+
 //     if (typeof (data[i]) === "number") {
 //         data[i] = data[i] *2;
 //        } 
-   
+
 //     else {
 //         data[i] = data[i]+' - done'
 //     }
-     
+
 // }
 // console.log(data)
 
-const data = [5, 10, 'Shopping', 20, 'Homework'];
-const result = [];
+// const data = [5, 10, 'Shopping', 20, 'Homework'];
+// const result = [];
 
-const zahlElementen = data.length
+// const zahlElementen = data.length
 
-let j = 0;
+// let j = 0;
 
-for (let i = zahlElementen-1; i >=0; i--) {
-    
-    result[j] = data[i];
-    j++;
-        
+// for (let i = zahlElementen-1; i >=0; i--) {
 
-}
-console.log(result)
+//     result[j] = data[i];
+//     j++;
+
+
+// }
+// console.log(result)
+
+// const höhe = 6;
+// const breite = 11;
+// const i = 1;
+// const stern = "*";
+// leerzeichen = " " * höhe
+// while (i <= höhe && len(stern) <= breite) {
+// console.log(f"{leerzeichen}{stern}")
+// leerzeichen = leerzeichen[: 1]+ leerzeichen[2:]
+// stern += "**"
+// i += 1
+
+// print(leerzeichen * (höhe - 1) + stern[: 3])
+// }
+
