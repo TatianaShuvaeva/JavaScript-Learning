@@ -1,3 +1,4 @@
+//@ts-check
 /* Aufgaben für die Lektion:
 
 1) Entfernen Sie alle Anzeigenblöcke von der Seite (rechte Seite der Site).
@@ -12,6 +13,24 @@ Sortieren Sie sie alphabetisch
 
 5) Nummerierung der Ausgabefilme hinzufügen */
 
+
+/* Задания на урок N2:
+
+1) Реализовать функционал, что после заполнения формы и нажатия кнопки "Подтвердить" - 
+новый фильм добавляется в список. Страница не должна перезагружаться.
+Новый фильм должен добавляться в movieDB.movies.
+Для получения доступа к значению input - обращаемся к нему как input.value;
+P.S. Здесь есть несколько вариантов решения задачи, принимается любой, но рабочий.
+
+2) Если название фильма больше, чем 21 символ - обрезать его и добавить три точки
+
+3) При клике на мусорную корзину - элемент будет удаляться из списка (сложно)
+
+4) Если в форме стоит галочка "Сделать любимым" - в консоль вывести сообщение: 
+"Добавляем любимый фильм"
+
+5) Фильмы должны быть отсортированы по алфавиту */
+
 'use strict';
 
 const movieDB = {
@@ -24,12 +43,16 @@ const movieDB = {
     ]
 };
 
-movieDB.movies.sort();
+function sortieren() {
+    movieDB.movies.sort();
 
-const listeFilmen = document.querySelectorAll('.promo__interactive-item');
-listeFilmen.forEach((item, i) => {
-    item.innerHTML = i+1+'.  '+movieDB.movies[i]
-});
+    const listeFilmen = document.querySelectorAll('.promo__interactive-item');
+    listeFilmen.forEach((item, i) => {
+        item.textContent = i + 1 + '.  ' + movieDB.movies[i];
+    });
+}
+
+sortieren();
 
 
 const werbung = document.querySelectorAll('.promo__adv img'),
@@ -45,3 +68,22 @@ genre.textContent = 'драма';
 const bild = document.getElementById('bild-mars');
 
 bild.style.backgroundImage = 'url("img/bg.jpg")';
+
+
+function addElement() {
+    const filmInput = document.getElementById('filminput');
+
+    let filmName = filmInput['value'];
+    filmName = filmName.trim()
+
+    if (filmName === "") {
+        return;
+    }
+
+    movieDB.movies.push(filmName);
+    const list = document.querySelector('.promo__interactive-list');
+    const newElement = list.children[0].cloneNode(true);
+    newElement['textContent'] = filmName;
+    list.appendChild(newElement);
+    sortieren();
+};

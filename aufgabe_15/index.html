@@ -48,7 +48,7 @@
                     <div class="promo__interactive-title">ПРОСМОТРЕННЫЕ ФИЛЬМЫ</div>
                     <ul class="promo__interactive-list">
                         <li class="promo__interactive-item">ЛОГАН
-                            <div class="delete"></div>
+                            <div class="delete">X</div>
                         </li>
                         <li class="promo__interactive-item">ЛИГА СПРАВЕДЛИВОСТИ
                             <div class="delete"></div>
@@ -68,11 +68,12 @@
                     <form class="add">
                         <div class="promo__interactive-title">ДОБАВИТЬ НОВЫЙ ФИЛЬМ</div>
                         <span>Введите название фильма</span>
-                        <input class="adding__input" type="text" placeholder="Что уже посмотрено...?">
+                        <input id="filminput" class="adding__input" type="text"
+                            placeholder="Что уже посмотрено...?">
                         <span>Сделать его любимым?</span>
                         <input type="checkbox">
                         <span class="yes">Да!</span>
-                        <button>Подтвердить</button>
+                        <button onclick="addElement()">Подтвердить</button>
                     </form>
                 </div>
             </div>
