@@ -1,16 +1,16 @@
-/* Задания на урок:
+/* Aufgaben für die Lektion:
 
-1) Удалить все рекламные блоки со страницы (правая часть сайта)
+1) Entfernen Sie alle Anzeigenblöcke von der Seite (rechte Seite der Site).
 
-2) Изменить жанр фильма, поменять "комедия" на "драма"
+2) Ändern Sie das Genre des Films, ändern Sie „Komödie“ in „Drama“
 
-3) Изменить задний фон постера с фильмом на изображение "bg.jpg". Оно лежит в папке img.
-Реализовать только при помощи JS
+3) Ändern Sie den Hintergrund des Filmplakats in das Bild „bg.jpg“. Es befindet sich im IMG-Ordner.
+Implementierung nur mit JS
 
-4) Список фильмов на странице сформировать на основании данных из этого JS файла.
-Отсортировать их по алфавиту 
+4) Erstellen Sie basierend auf den Daten aus dieser JS-Datei eine Liste der Filme auf der Seite.
+Sortieren Sie sie alphabetisch
 
-5) Добавить нумерацию выведенных фильмов */
+5) Nummerierung der Ausgabefilme hinzufügen */
 
 'use strict';
 
