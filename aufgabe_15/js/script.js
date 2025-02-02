@@ -33,57 +33,78 @@ P.S. Здесь есть несколько вариантов решения з
 
 'use strict';
 
-const movieDB = {
-    movies: [
-        "Логан",
-        "Лига справедливости",
-        "Ла-ла лэнд",
-        "Одержимость",
-        "Скотт Пилигрим против..."
-    ]
-};
+document.addEventListener('DOMContentLoaded', verarbeitenDomContentLoaded())
 
-function sortieren() {
-    movieDB.movies.sort();
+function verarbeitenDomContentLoaded() {
+    return () => {
+        const movieDB = {
+            movies: [
+                "Логан",
+                "Лига справедливости",
+                "Ла-ла лэнд",
+                "Одержимость",
+                "Скотт Пилигрим против..."
+            ]
+        };
 
-    const listeFilmen = document.querySelectorAll('.promo__interactive-item');
-    listeFilmen.forEach((item, i) => {
+        function sortieren() {
+            movieDB.movies.sort();
+
+            const listeFilmen = document.querySelectorAll('.promo__interactive-item');
+            listeFilmen.forEach((item, i) => {
         item.textContent = i + 1 + '.  ' + movieDB.movies[i];
-    });
+            });
+        }
+
+
+        sortieren();
+
+
+        const werbung = document.querySelectorAll('.promo__adv img'),
+            hintergund = document.querySelector('.promo__bg'),
+            genre = hintergund.querySelector('.promo__genre');
+
+        werbung.forEach(item => {
+            item.remove();
+        });
+
+        genre.textContent = 'драма';
+
+        const bild = document.getElementById('bild-mars');
+
+        bild.style.backgroundImage = 'url("img/bg.jpg")';
+
+
+        const button = document.querySelector("#filmbutton");
+
+        button.addEventListener("click", (event) => {
+            const filmInput = document.getElementById('filminput');
+
+            let filmName = filmInput['value'];
+            filmInput['value'] = '';
+            filmName = filmName.trim();
+
+            if (filmName === "") {
+                return;
+            }
+
+            if (filmName.length > 21) {
+                filmName = filmName.substring(0, 21) + '...';
+            }
+            const checkboxInput = document.querySelector('#checkboxInput');
+            if (checkboxInput['checked'] == true) {
+                console.log('Добавляем любимый фильм');
+            }
+
+
+            movieDB.movies.push(filmName);
+            const list = document.querySelector('.promo__interactive-list');
+            const newElement = list.children[0].cloneNode(true);
+            newElement['textContent'] = filmName;
+            list.appendChild(newElement);
+
+            sortieren();
+
+        });
+    };
 }
-
-sortieren();
-
-
-const werbung = document.querySelectorAll('.promo__adv img'),
-    hintergund = document.querySelector('.promo__bg'),
-    genre = hintergund.querySelector('.promo__genre');
-
-werbung.forEach(item => {
-    item.remove();
-});
-
-genre.textContent = 'драма';
-
-const bild = document.getElementById('bild-mars');
-
-bild.style.backgroundImage = 'url("img/bg.jpg")';
-
-
-function addElement() {
-    const filmInput = document.getElementById('filminput');
-
-    let filmName = filmInput['value'];
-    filmName = filmName.trim()
-
-    if (filmName === "") {
-        return;
-    }
-
-    movieDB.movies.push(filmName);
-    const list = document.querySelector('.promo__interactive-list');
-    const newElement = list.children[0].cloneNode(true);
-    newElement['textContent'] = filmName;
-    list.appendChild(newElement);
-    sortieren();
-};
