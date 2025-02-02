@@ -46,65 +46,104 @@ function verarbeitenDomContentLoaded() {
                 "Скотт Пилигрим против..."
             ]
         };
+        const werbung = document.querySelectorAll('.promo__adv img'),
+            hintergund = document.querySelector('.promo__bg'),
+            genre = hintergund.querySelector('.promo__genre'),
+            listeFilme = document.querySelector('.promo__interactive-list'),
+            bild = document.querySelector('#bild-mars'),
 
-        function sortieren() {
-            movieDB.movies.sort();
+            /** @type {HTMLFormElement} */
+            addForm = document.querySelector('form.add'),
 
-            const listeFilmen = document.querySelectorAll('.promo__interactive-item');
-            listeFilmen.forEach((item, i) => {
-        item.textContent = i + 1 + '.  ' + movieDB.movies[i];
+            addInput = addForm.querySelector('.adding__input'),
+
+            checkbox = addForm.querySelector('[type="checkbox"]');
+
+        addForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+
+            let newFilm = addInput['value'];
+            let favorite = checkbox['checked'];
+
+            movieDB.movies.push(newFilm);
+            sortArr(movieDB.movies);
+
+            erstellenListeFilme(movieDB.movies, listeFilme);
+
+            addForm.reset()
+        });
+
+        const entfernenWerbung = (arr) => {
+            arr.forEach(item => {
+                item.remove();
+            });
+        };
+
+
+        const vornehmenAenderungen = () => {
+            genre.textContent = 'драма';
+
+            bild['style'].backgroundImage = 'url("img/bg.jpg")';
+        };
+
+
+        const sortArr = (arr) => {
+            arr.sort();
+        };
+
+        function erstellenListeFilme(filme, eltern) {
+
+            eltern.innerHTML = "";
+            sortArr(filme);
+
+            filme.forEach((film, i) => {
+
+                eltern.innerHTML += `
+                    <li class="promo__interactive-item">${i + 1} ${film}
+                        <div class="delete"></div>
+                    </li>
+                `;
             });
         }
 
+        entfernenWerbung(werbung);
+        vornehmenAenderungen();
+        sortArr(movieDB.movies);
+        erstellenListeFilme(movieDB.movies, listeFilme);
 
-        sortieren();
+    }
+};
 
+//     const button = document.querySelector("#filmbutton");
 
-        const werbung = document.querySelectorAll('.promo__adv img'),
-            hintergund = document.querySelector('.promo__bg'),
-            genre = hintergund.querySelector('.promo__genre');
+//     button.addEventListener("click", (event) => {
+//         const filmInput = document.getElementById('filminput');
 
-        werbung.forEach(item => {
-            item.remove();
-        });
+//         let filmName = filmInput['value'];
+//         filmInput['value'] = '';
+//         filmName = filmName.trim();
 
-        genre.textContent = 'драма';
+//         if (filmName === "") {
+//             return;
+//         }
 
-        const bild = document.getElementById('bild-mars');
-
-        bild.style.backgroundImage = 'url("img/bg.jpg")';
-
-
-        const button = document.querySelector("#filmbutton");
-
-        button.addEventListener("click", (event) => {
-            const filmInput = document.getElementById('filminput');
-
-            let filmName = filmInput['value'];
-            filmInput['value'] = '';
-            filmName = filmName.trim();
-
-            if (filmName === "") {
-                return;
-            }
-
-            if (filmName.length > 21) {
-                filmName = filmName.substring(0, 21) + '...';
-            }
-            const checkboxInput = document.querySelector('#checkboxInput');
-            if (checkboxInput['checked'] == true) {
-                console.log('Добавляем любимый фильм');
-            }
+//         if (filmName.length > 21) {
+//             filmName = filmName.substring(0, 21) + '...';
+//         }
+//         const checkboxInput = document.querySelector('#checkboxInput');
+//         if (checkboxInput['checked'] == true) {
+//             console.log('Добавляем любимый фильм');
+//         }
 
 
-            movieDB.movies.push(filmName);
-            const list = document.querySelector('.promo__interactive-list');
-            const newElement = list.children[0].cloneNode(true);
-            newElement['textContent'] = filmName;
-            list.appendChild(newElement);
+//         movieDB.movies.push(filmName);
+//         const list = document.querySelector('.promo__interactive-list');
+//         const newElement = list.children[0].cloneNode(true);
+//         newElement['textContent'] = filmName;
+//         list.appendChild(newElement);
 
-            sortieren();
+//         sortieren();
 
-        });
-    };
-}
+//     });
+// };
+
