@@ -70,6 +70,9 @@ function verarbeitenDomContentLoaded() {
                 if (newFilm.length > 21) {
                     newFilm = `${newFilm.substring(0, 22)}...`
                 }
+                if (favorite) {
+                    console.log("Добавляем любимый фильм");
+                }
 
                 movieDB.movies.push(newFilm);
                 sortArr(movieDB.movies);
@@ -102,6 +105,7 @@ function verarbeitenDomContentLoaded() {
         function erstellenListeFilme(filme, eltern) {
 
             eltern.innerHTML = "";
+
             sortArr(filme);
 
             filme.forEach((film, i) => {
@@ -115,11 +119,12 @@ function verarbeitenDomContentLoaded() {
 
             let muelleimer = document.querySelectorAll('.delete');
 
-            muelleimer.forEach((btn, 1) => {
+            muelleimer.forEach((btn, i) => {
                 btn.addEventListener('click', () => {
                     btn.parentElement.remove();
-                    movieDB.movies.splice(1, 1);
+                    movieDB.movies.splice(i, 1);
 
+                    erstellenListeFilme(filme, eltern);
                 })
             });
 
@@ -127,7 +132,7 @@ function verarbeitenDomContentLoaded() {
 
         entfernenWerbung(werbung);
         vornehmenAenderungen();
-        sortArr(movieDB.movies);
+        
         erstellenListeFilme(movieDB.movies, listeFilme);
 
     }
