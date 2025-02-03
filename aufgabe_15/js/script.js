@@ -63,15 +63,23 @@ function verarbeitenDomContentLoaded() {
             event.preventDefault();
 
             let newFilm = addInput['value'];
-            let favorite = checkbox['checked'];
+            const favorite = checkbox['checked'];
 
-            movieDB.movies.push(newFilm);
-            sortArr(movieDB.movies);
+            if (newFilm) {
 
-            erstellenListeFilme(movieDB.movies, listeFilme);
+                if (newFilm.length > 21) {
+                    newFilm = `${newFilm.substring(0, 22)}...`
+                }
+
+                movieDB.movies.push(newFilm);
+                sortArr(movieDB.movies);
+                erstellenListeFilme(movieDB.movies, listeFilme);
+            }
 
             addForm.reset()
         });
+
+
 
         const entfernenWerbung = (arr) => {
             arr.forEach(item => {
@@ -104,6 +112,17 @@ function verarbeitenDomContentLoaded() {
                     </li>
                 `;
             });
+
+            let muelleimer = document.querySelectorAll('.delete');
+
+            muelleimer.forEach((btn, 1) => {
+                btn.addEventListener('click', () => {
+                    btn.parentElement.remove();
+                    movieDB.movies.splice(1, 1);
+
+                })
+            });
+
         }
 
         entfernenWerbung(werbung);
